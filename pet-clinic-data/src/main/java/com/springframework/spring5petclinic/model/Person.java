@@ -2,6 +2,7 @@ package com.springframework.spring5petclinic.model;
 
 public class Person extends BaseEntity {
 
+    private Long id;
     private String firstName;
     private String lastName;
 
@@ -20,4 +21,5 @@ public class Person extends BaseEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }
