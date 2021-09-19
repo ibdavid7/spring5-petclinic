@@ -21,4 +21,12 @@ public class Person extends BaseEntity {
         this.lastName = lastName;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id='" + this.getId() + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
