@@ -2,13 +2,14 @@ package com.springframework.spring5petclinic.services.map;
 
 
 import com.springframework.spring5petclinic.model.Owner;
-import com.springframework.spring5petclinic.services.CrudService;
+import com.springframework.spring5petclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Locale;
-import java.util.Map;
 
+@Service
 public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long>
-        implements CrudService<Owner, Long> {
+        implements OwnerService<Owner, Long> {
 
     @Override
     public Owner save(Owner owner) {

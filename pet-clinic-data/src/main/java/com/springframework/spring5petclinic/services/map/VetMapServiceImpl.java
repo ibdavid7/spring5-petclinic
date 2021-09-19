@@ -1,11 +1,13 @@
 package com.springframework.spring5petclinic.services.map;
 
 import com.springframework.spring5petclinic.model.Vet;
-import com.springframework.spring5petclinic.services.CrudService;
+import com.springframework.spring5petclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 
-public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+@Service
+public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService<Vet, Long> {
     @Override
     public Vet save(Vet vet) {
         return this.save(vet.getId(), vet);
