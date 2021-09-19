@@ -5,6 +5,7 @@ import com.springframework.spring5petclinic.model.Person;
 import com.springframework.spring5petclinic.model.Vet;
 import com.springframework.spring5petclinic.services.OwnerService;
 import com.springframework.spring5petclinic.services.VetService;
+import com.springframework.spring5petclinic.services.map.AbstractMapService;
 import org.aspectj.weaver.loadtime.Options;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

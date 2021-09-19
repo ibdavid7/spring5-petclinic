@@ -10,7 +10,7 @@ import java.util.Locale;
 public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService<Vet, Long> {
     @Override
     public Vet save(Vet vet) {
-        return this.save(vet.getId(), vet);
+        return super.save(vet);
     }
 
     public Vet findByLastName(String lastName) {

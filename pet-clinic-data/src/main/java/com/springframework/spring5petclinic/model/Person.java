@@ -2,7 +2,6 @@ package com.springframework.spring5petclinic.model;
 
 public class Person extends BaseEntity {
 
-    private Long id;
     private String firstName;
     private String lastName;
 

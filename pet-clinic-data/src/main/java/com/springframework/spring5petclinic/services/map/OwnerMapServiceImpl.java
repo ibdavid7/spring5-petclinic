@@ -13,7 +13,7 @@ public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long>
 
     @Override
     public Owner save(Owner owner) {
-        return this.save(owner.getId(), owner);
+        return super.save(owner);
     }
 
     public Owner findByLastName(String lastName) {
