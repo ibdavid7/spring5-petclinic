@@ -1,12 +1,11 @@
 package com.springframework.spring5petclinic.bootstrap;
 
 import com.springframework.spring5petclinic.model.Owner;
-import com.springframework.spring5petclinic.model.Person;
+import com.springframework.spring5petclinic.model.PetType;
 import com.springframework.spring5petclinic.model.Vet;
 import com.springframework.spring5petclinic.services.OwnerService;
+import com.springframework.spring5petclinic.services.PetTypeService;
 import com.springframework.spring5petclinic.services.VetService;
-import com.springframework.spring5petclinic.services.map.AbstractMapService;
-import org.aspectj.weaver.loadtime.Options;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +14,29 @@ public class DataInitializer implements CommandLineRunner {
 
     private final OwnerService<Owner, Long> ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataInitializer(OwnerService<Owner, Long> ownerService, VetService vetService) {
+    public DataInitializer(OwnerService<Owner, Long> ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        // Init PetType
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedDog = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+        PetType savedCat = petTypeService.save(cat);
+
+        System.out.println("Loaded PetTypes....");
+
+        // Init Owner
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
@@ -36,6 +49,7 @@ public class DataInitializer implements CommandLineRunner {
 
         System.out.println("Loaded Owners....");
 
+        // Init Vet
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");

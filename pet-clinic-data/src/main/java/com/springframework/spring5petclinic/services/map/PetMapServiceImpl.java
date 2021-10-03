@@ -5,10 +5,11 @@ import com.springframework.spring5petclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PetMapServiceImpl extends AbstractMapService<Pet, Long> implements PetService<Pet, Long> {
+public class PetMapServiceImpl extends AbstractMapService<Pet, Long>
+        implements PetService/*<Pet, Long>*/ {
 
 /*    @Override
     public Pet save(Pet pet) {
-        return super.save(pet);
+        return (Pet) super.save(pet);
     }*/
 }
