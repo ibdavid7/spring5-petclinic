@@ -1,11 +1,31 @@
 package com.springframework.spring5petclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Owner extends Person {
 
+    private Set<Pet> pets;
     private String address;
+    private String city;
     private String telephone;
+
+    {
+        pets = new HashSet<>();
+    }
+
+    public Set<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public void addPet(Pet pet) {
+//        pet.setOwner(this);
+        pets.add(pet);
+    }
 
     public String getAddress() {
         return address;
@@ -31,20 +51,16 @@ public class Owner extends Person {
         this.city = city;
     }
 
-    private String city;
-
-    private Set<Pet> pets;
-
-    public Set<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(Set<Pet> pets) {
-        this.pets = pets;
-    }
-
-    public void addPet(Pet pet) {
-        pet.setOwner(this);
-        pets.add(pet);
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id='" + this.getId() + '\'' +
+                ", firstName='" + this.getFirstName() + '\'' +
+                ", lastName='" + this.getLastName() + '\'' +
+                ", pets=" + pets + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", telephone='" + telephone + '\'' +
+                '}';
     }
 }

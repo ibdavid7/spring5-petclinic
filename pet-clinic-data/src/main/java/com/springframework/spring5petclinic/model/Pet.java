@@ -2,7 +2,7 @@ package com.springframework.spring5petclinic.model;
 
 import java.time.LocalDate;
 
-public class Pet extends BaseEntity {
+public class Pet extends NamedEntity {
 
     private PetType petType;
     private Owner owner;
@@ -30,5 +30,16 @@ public class Pet extends BaseEntity {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id='" + this.getId() + '\'' +
+                ", name='" + this.getName() + '\'' +
+                ", petType=" + petType +
+//                ", owner=" + owner +  //Causing StackOverflow if called form Owner toString()
+                ", birthDate=" + birthDate +
+                '}';
     }
 }

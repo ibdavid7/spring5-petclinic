@@ -1,6 +1,6 @@
 package com.springframework.spring5petclinic.model;
 
-public class Specialty extends BaseEntity{
+public class Specialty extends NamedEntity {
 
     public String description;
 
