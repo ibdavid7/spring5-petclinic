@@ -1,6 +1,7 @@
 package com.springframework.spring5petclinic.services.map;
 
 import com.springframework.spring5petclinic.model.Vet;
+import com.springframework.spring5petclinic.services.SpecialityService;
 import com.springframework.spring5petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +9,28 @@ import java.util.Locale;
 
 @Service
 public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService<Vet, Long> {
+
+    private final SpecialityService specialityService;
+
+    public VetMapServiceImpl(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
+
     @Override
     public Vet save(Vet vet) {
+
+        if (vet == null) {
+            return null;
+        }
+
+        vet.getSpecialties()
+                .forEach(specialty -> {
+                    // If Speciality not yet persisted, add Speciality to SpecialityService
+                    if (specialty.getId() == null) {
+                        specialityService.save(specialty);
+                    }
+                });
+
         return super.save(vet);
     }
 

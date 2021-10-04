@@ -2,7 +2,6 @@ package com.springframework.spring5petclinic.services.map;
 
 
 import com.springframework.spring5petclinic.model.Owner;
-import com.springframework.spring5petclinic.model.Pet;
 import com.springframework.spring5petclinic.services.OwnerService;
 import com.springframework.spring5petclinic.services.PetService;
 import com.springframework.spring5petclinic.services.PetTypeService;
@@ -29,7 +28,7 @@ public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long>
             return null;
         }
 
-        owner.getPets().stream()
+        owner.getPets()
                 .forEach(pet -> {
                     // Pet requires PetType, mandatory field
                     if (pet.getPetType() == null) {
