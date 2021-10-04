@@ -1,9 +1,6 @@
 package com.springframework.spring5petclinic.bootstrap;
 
-import com.springframework.spring5petclinic.model.Owner;
-import com.springframework.spring5petclinic.model.Pet;
-import com.springframework.spring5petclinic.model.PetType;
-import com.springframework.spring5petclinic.model.Vet;
+import com.springframework.spring5petclinic.model.*;
 import com.springframework.spring5petclinic.services.OwnerService;
 import com.springframework.spring5petclinic.services.PetTypeService;
 import com.springframework.spring5petclinic.services.VetService;
@@ -28,6 +25,11 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        if (petTypeService.findAll().size() == 0) loadData();
+
+    }
+
+    private void loadData() {
         // Init PetType
         PetType dog = new PetType();
         dog.setName("Dog");
@@ -68,19 +70,38 @@ public class DataInitializer implements CommandLineRunner {
 
         System.out.println("Loaded Owners....");
 
+        // Init Specialty
+        Specialty dentistry = new Specialty();
+        dentistry.setName("Dentistry");
+
+        Specialty surgery = new Specialty();
+        surgery.setName("Surgery");
+
+        Specialty radiology = new Specialty();
+        radiology.setName("Radiology");
+
         // Init Vet
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
+        vet1.addSpecialty(dentistry);
+        vet1.addSpecialty(surgery);
+        vet1.addSpecialty(radiology);
+
         vetService.save(vet1);
+
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
+        vet2.addSpecialty(surgery);
+        vet2.addSpecialty(radiology);
+        vet2.addSpecialty(dentistry);
         vetService.save(vet2);
 
         System.out.println("Loaded Vets....");
 
+        vetService.findAll().forEach(System.out::println);
     }
 
     private Pet createPet(Owner owner, PetType petType, String name, LocalDate dob) {

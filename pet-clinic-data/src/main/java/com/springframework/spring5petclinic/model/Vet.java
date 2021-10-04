@@ -22,4 +22,14 @@ public class Vet extends Person {
     public void addSpecialty(Specialty specialty) {
         this.specialties.add(specialty);
     }
+
+    @Override
+    public String toString() {
+        return "Vet{" +
+                "id='" + this.getId() + '\'' +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", specialties=" + specialties +
+                '}';
+    }
 }

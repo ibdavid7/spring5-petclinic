@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class VetIndexController {
 
-    private final VetService<Vet, Long> vetService;
+    private final VetService vetService;
 
-    public VetIndexController(VetService<Vet, Long> vetService) {
+    public VetIndexController(VetService vetService) {
         this.vetService = vetService;
     }
 

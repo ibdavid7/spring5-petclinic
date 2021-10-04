@@ -15,7 +15,8 @@ public class NamedEntity extends BaseEntity {
     @Override
     public String toString() {
         return "NamedEntity{" +
-                "name='" + name + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

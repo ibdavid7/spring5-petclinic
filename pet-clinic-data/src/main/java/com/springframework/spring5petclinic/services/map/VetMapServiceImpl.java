@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Locale;
 
 @Service
-public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService<Vet, Long> {
+public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialityService specialityService;
 
