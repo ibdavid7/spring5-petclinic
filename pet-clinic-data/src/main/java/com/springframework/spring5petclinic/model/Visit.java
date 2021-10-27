@@ -1,12 +1,20 @@
 package com.springframework.spring5petclinic.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
+@Entity
+@Table(name = "visits")
 public class Visit extends BaseEntity{
 
+    @Column(name = "visit_date")
     private LocalDateTime localDateTime;
+
+    @Column(name = "description")
     private String description;
+
+    @ManyToOne()
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     public Visit() {
