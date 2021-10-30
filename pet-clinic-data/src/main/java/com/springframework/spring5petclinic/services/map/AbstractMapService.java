@@ -20,8 +20,8 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
         return new HashSet<>(map.values());
     }
 
-    public T findById(ID id) {
-        return map.get(id);
+    public Optional<T> findById(ID id) {
+        return Optional.ofNullable(map.get(id));
     }
 
     public T save(T object) {

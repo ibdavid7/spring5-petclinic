@@ -9,13 +9,13 @@ import java.io.Serializable;
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private static final long serialVersionUID = 1L;
 
     public BaseEntity() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     public Long getId() {
