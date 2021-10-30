@@ -1,6 +1,7 @@
 package com.springframework.spring5petclinic.services.springdatajpa;
 
 import com.springframework.spring5petclinic.model.Vet;
+import com.springframework.spring5petclinic.repositories.SpecialtyRepository;
 import com.springframework.spring5petclinic.repositories.VetRepository;
 import com.springframework.spring5petclinic.services.VetService;
 import org.springframework.context.annotation.Profile;
@@ -16,9 +17,11 @@ import java.util.stream.StreamSupport;
 public class VetSDJpaService implements VetService {
 
     private final VetRepository vetRepository;
+    private final SpecialtyRepository specialtyRepository;
 
-    public VetSDJpaService(VetRepository vetRepository) {
+    public VetSDJpaService(VetRepository vetRepository, SpecialtyRepository specialtyRepository) {
         this.vetRepository = vetRepository;
+        this.specialtyRepository = specialtyRepository;
     }
 
     @Override
@@ -33,6 +36,13 @@ public class VetSDJpaService implements VetService {
 
     @Override
     public Vet save(Vet vet) {
+
+        vet.getSpecialties().forEach(specialty -> {
+            if (specialty.getId() == null) {
+                specialtyRepository.save(specialty);
+            }
+        });
+
         return vetRepository.save(vet);
     }
 
