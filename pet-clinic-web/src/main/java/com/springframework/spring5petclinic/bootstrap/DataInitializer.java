@@ -4,10 +4,13 @@ import com.springframework.spring5petclinic.model.*;
 import com.springframework.spring5petclinic.services.OwnerService;
 import com.springframework.spring5petclinic.services.PetTypeService;
 import com.springframework.spring5petclinic.services.VetService;
+import com.springframework.spring5petclinic.services.VisitService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -15,11 +18,13 @@ public class DataInitializer implements CommandLineRunner {
     private final OwnerService<Owner, Long> ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final VisitService visitService;
 
-    public DataInitializer(OwnerService<Owner, Long> ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataInitializer(OwnerService<Owner, Long> ownerService, VetService vetService, PetTypeService petTypeService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -70,6 +75,15 @@ public class DataInitializer implements CommandLineRunner {
 
         System.out.println("Loaded Owners....");
 
+        // Init Visit
+        Visit visit1 = new Visit();
+        visit1.setDescription("Sneezy kitty");
+        visit1.setLocalDateTime(LocalDateTime.now());
+        visit1.setPet(fionnaCat2);
+        visitService.save(visit1);
+
+        System.out.println("Loaded Visits...");
+
         // Init Specialty
         Specialty dentistry = new Specialty();
         dentistry.setName("Dentistry");
@@ -114,4 +128,5 @@ public class DataInitializer implements CommandLineRunner {
         owner.addPet(pet);
         return pet;
     }
+
 }
