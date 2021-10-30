@@ -3,12 +3,16 @@ package com.springframework.spring5petclinic.services.springdatajpa;
 import com.springframework.spring5petclinic.model.Vet;
 import com.springframework.spring5petclinic.repositories.VetRepository;
 import com.springframework.spring5petclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
+@Profile("springdatajpa")
 public class VetSDJpaService implements VetService {
 
     private final VetRepository vetRepository;
