@@ -1,12 +1,24 @@
 package com.springframework.spring5petclinic.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "vets")
 public class Vet extends Person {
+
+    @Builder
+    public Vet(Long id, String firstName, String lastName) {
+        super(id, firstName, lastName);
+//        this.specialties = specialties; interferes with Instance Initialization Block IIB
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -20,15 +32,9 @@ public class Vet extends Person {
         specialties = new HashSet<>();
     }
 
-    public Set<Specialty> getSpecialties() {
-        return specialties;
-    }
-
-    public void setSpecialties(Set<Specialty> specialties) {
-        this.specialties = specialties;
-    }
-
     public void addSpecialty(Specialty specialty) {
+//        if (this.specialties == null) this.specialties = new HashSet<>(); No longer Require as Constructor was
+//        fixed to exclude speciality set
         this.specialties.add(specialty);
     }
 

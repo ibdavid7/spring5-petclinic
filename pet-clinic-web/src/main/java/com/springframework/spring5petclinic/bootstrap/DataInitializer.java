@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -73,6 +74,25 @@ public class DataInitializer implements CommandLineRunner {
 
         ownerService.save(owner2);
 
+        Owner owner3 = Owner.builder()
+                .firstName("Firtpatrick")
+                .lastName("Filibuster")
+                .address("Horny Cepen")
+                .city("Sered")
+                .telephone("999-999-9999")
+                .build();
+
+        Pet fitzpatrickCat = Pet.builder()
+                .owner(owner3)
+                .petType(cat)
+                .name("Pussy Galore")
+                .birthDate(LocalDate.now())
+                .build();
+
+        owner3.addPet(fitzpatrickCat);
+
+        ownerService.save(owner3);
+
         System.out.println("Loaded Owners....");
 
         // Init Visit
@@ -112,6 +132,21 @@ public class DataInitializer implements CommandLineRunner {
         vet2.addSpecialty(radiology);
         vet2.addSpecialty(dentistry);
         vetService.save(vet2);
+
+        Vet vet3 = Vet.builder()
+                .firstName("Valdemart")
+                .lastName("Grandnstandeer")
+                .build();
+        vet3.addSpecialty(surgery);
+        vetService.save(vet3);
+
+        Vet vet4 = new Vet();
+        vet4.setFirstName("Tiny");
+        vet4.setLastName("Toother");
+        vet4.addSpecialty(surgery);
+        vet4.addSpecialty(radiology);
+        vet4.addSpecialty(dentistry);
+        vetService.save(vet4);
 
         System.out.println("Loaded Vets....");
 

@@ -37,11 +37,11 @@ public class VetSDJpaService implements VetService {
     @Override
     public Vet save(Vet vet) {
 
-        vet.getSpecialties().forEach(specialty -> {
-            if (specialty.getId() == null) {
-                specialtyRepository.save(specialty);
-            }
-        });
+            vet.getSpecialties().forEach(specialty -> {
+                if (specialty.getId() == null) {
+                    specialtyRepository.save(specialty);
+                }
+            });
 
         return vetRepository.save(vet);
     }
